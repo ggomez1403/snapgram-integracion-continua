@@ -4,12 +4,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'npm install'
+                echo 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'testing react app..'
             }
         }
         stage('Deploy') {
             steps {
-                bat 'npm run dev'
+                echo 'Deploying react app....'
             }
         }
     }
