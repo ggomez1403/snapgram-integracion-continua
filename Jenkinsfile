@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying react app....'
+                bat 'npm run dev'
             }
         }
     }
