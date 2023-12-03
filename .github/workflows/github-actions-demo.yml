@@ -1,8 +1,6 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on:
-  push:
-    branches: [main]
+on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -34,8 +32,8 @@ jobs:
           ls ${{ github.workspace }}
       - id: echo-job-status
         run: echo "🍏 This job's status is ${{ job.status }}."
-  Upload-coverage-reports-to-Codecov:
-    name: Upload coverage reports to Codecov
-    uses: codecov/codecov-action@v3
-    env:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
