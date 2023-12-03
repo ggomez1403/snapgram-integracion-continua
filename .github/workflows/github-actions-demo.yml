@@ -19,7 +19,7 @@ jobs:
         run:
           echo "🔎 The name of your branch is ${{ github.ref }} and your
           repository is ${{ github.repository }}."
-      - name: Checkout repository code
+      - name: Check out repository code
         uses: actions/checkout@v4
       - id: echo-repo-cloned
         run:
@@ -30,7 +30,8 @@ jobs:
           echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
         id: list-files
-        run: ls ${{ github.workspace }}
+        run: |
+          ls ${{ github.workspace }}
       - id: echo-job-status
         run: echo "🍏 This job's status is ${{ job.status }}."
   Upload-coverage-reports-to-Codecov:
