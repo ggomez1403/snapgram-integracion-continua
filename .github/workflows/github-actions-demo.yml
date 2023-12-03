@@ -1,31 +1,40 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on:
+  push:
+    branches: [main]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run:
+      - id: echo-event-name
+        run:
           echo "🎉 The job was automatically triggered by a ${{
           github.event_name }} event."
-      - run:
+      - id: echo-runner-info
+        run:
           echo "🐧 This job is now running on a ${{ runner.os }} server hosted
           by GitHub!"
-      - run:
+      - id: echo-repo-info
+        run:
           echo "🔎 The name of your branch is ${{ github.ref }} and your
           repository is ${{ github.repository }}."
-      - name: Check out repository code
+      - name: Checkout repository code
         uses: actions/checkout@v4
-      - run:
+      - id: echo-repo-cloned
+        run:
           echo "💡 The ${{ github.repository }} repository has been cloned to
           the runner."
-      - run:
+      - id: echo-workflow-ready
+        run:
           echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-  - name: Upload coverage reports to Codecov
+        id: list-files
+        run: ls ${{ github.workspace }}
+      - id: echo-job-status
+        run: echo "🍏 This job's status is ${{ job.status }}."
+  Upload-coverage-reports-to-Codecov:
+    name: Upload coverage reports to Codecov
     uses: codecov/codecov-action@v3
     env:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
